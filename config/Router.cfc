@@ -55,6 +55,14 @@ component {
 		.toHandler( "api.user" );
 
 		get("/api/users","api.user.index");
+		apiResources( "photos" );
+
+		route( pattern="/news", target="public.news.index" );
+		route( pattern="/news/recent", target="public.news.recent" );
+		route( pattern="/news/removed", target="public.news.removed" );
+		route( pattern="/news/add/:title", target="public.news.add" );
+		route( pattern="/news/delete/:slug", target="public.news.remove" );
+		route( pattern="/news/v/:slug", target="public.news.view" );
 
 		// Conventions-Based Routing
 		route( ":handler/:action?" ).end();

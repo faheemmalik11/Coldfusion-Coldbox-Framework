@@ -16,14 +16,41 @@ component extends="coldbox.system.EventHandler"{
 	 * Display a listing of the resource
 	 */
 	function index( event, rc, prc ){
-		writeDump(event.getCurrentRoute());
-		writeDump(event.getCurrentRouteName());
-		writeDump(event.getCurrentRoutedURL());
-		writeDump(event.getCurrentRoutedNamespace());
-		<!--- writeDump(event); --->
-		// event.paramValue("name","nobody");
-		prc.when = dateFormat( now(), "full" );
-		event.setView(view="hello/index",layout="funky");
+	}
+
+	/**
+	 * recent
+	 */
+	function recent( event, rc, prc ){
+		writeOutput("THIS IS RECENT");
+	}
+
+	/**
+	 * removed
+	 */
+	function removed( event, rc, prc ){
+		writeOutput("THIS IS REMOVED");
+	}
+
+	/**
+	 * add
+	 */
+	function add( event, rc, prc ){
+		writeOutput("THIS IS ADD");
+	}
+
+	/**
+	 * remove
+	 */
+	function remove( event, rc, prc ){
+		writeOutput("THIS IS REMOVE");
+	}
+
+	/**
+	 * view
+	 */
+	function view( event, rc, prc ){
+		writeOutput("THIS IS VIEW");
 	}
 
 
