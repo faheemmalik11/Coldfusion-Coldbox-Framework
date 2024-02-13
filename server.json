@@ -1,5 +1,5 @@
 {
-    "name":".",
+    "name":"coldboxFramework",
     "web":{
         "rewrites":{
             "enable":"true"

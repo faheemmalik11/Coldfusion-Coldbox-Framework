@@ -32,7 +32,29 @@ component {
 			return { "error" : false, "data" : "Welcome to my awesome API!" };
 		} );
 
+
+
+
+
+
 		// @app_routes@
+
+		route("/home/:name").as("home").to("hello.index");
+		route( "/api/contacts" )
+		.as( "api.contacts" )
+		.rc( "format", "json" )
+		.to( "contacts.data" );
+
+		route( "/api/user/:id?" )
+		.withAction( {
+			GET    = 'view',
+			POST   = 'save',
+			PUT    = 'update',
+			DELETE = 'remove'
+		} )
+		.toHandler( "api.user" );
+
+		get("/api/users","api.user.index");
 
 		// Conventions-Based Routing
 		route( ":handler/:action?" ).end();
