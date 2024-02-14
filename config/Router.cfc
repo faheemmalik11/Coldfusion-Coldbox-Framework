@@ -13,7 +13,6 @@ component {
 		 * https://coldbox.ortusbooks.com/the-basics/routing/application-router#configuration-methods
 		 */
 		setFullRewrites( true );
-
 		/**
 		 * --------------------------------------------------------------------------
 		 * App Routes
@@ -57,13 +56,30 @@ component {
 		get("/api/users","api.user.index");
 		apiResources( "photos" );
 
-		route( pattern="/news", target="public.news.index" );
-		route( pattern="/news/recent", target="public.news.recent" );
-		route( pattern="/news/removed", target="public.news.removed" );
-		route( pattern="/news/add/:title", target="public.news.add" );
-		route( pattern="/news/delete/:slug", target="public.news.remove" );
-		route( pattern="/news/v/:slug", target="public.news.view" );
+		/* group( { pattern="/news", target="public.news." }, function(){
+			
+			route( "/recent", "recent" )
+			.route( "/removed", "removed" )
+			.route( "/add/:title", "add" )
+			.route( "/delete/:slug", "remove" )
+			.route( "/v/:slug", "view" )
+			.route( "/", "index" );
+		} ); */
 
+		/* addNamespace(pattern="/blog",namespace="blog");
+		route("/" )
+		.withNameSpace( "blog" ).to("blog.index"); */
+
+		/* DOES NOT WORK CORRECTLY
+		route( "/blog" ).toNamespaceRouting( "blog" )
+		.group( { namespace = "blog" }, function(){
+			route( "/", "blog.index" )
+			.route( "/:year-numeric?/:month-numeric?/:day-numeric?", "blog.archives" );
+		} ); */
+		post("/blog/delete").as("testing").to("blog.post");
+		delete("/blog/delete").as("testing").to("blog.delete");
+		post("/blog/file").as("sendFile").to("blog.report");
+		
 		// Conventions-Based Routing
 		route( ":handler/:action?" ).end();
 	}

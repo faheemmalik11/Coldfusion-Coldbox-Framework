@@ -23,7 +23,7 @@ component extends="coldbox.system.EventHandler"{
 
 	any function data( event, rc, prc ){
 		prc.aContacts = contactService.getAll();    
-		event.renderData( data=prc.aContacts, formats="xml,json,pdf" );
+		event.renderData( data=prc.aContacts, formats="xml,json,pdf,html" );
 	}
 
 
