@@ -79,6 +79,8 @@ component {
 		post("/blog/delete").as("testing").to("blog.post");
 		delete("/blog/delete").as("testing").to("blog.delete");
 		post("/blog/file").as("sendFile").to("blog.report");
+
+		route("/funky","api.user.funky","funky");
 		
 		// Conventions-Based Routing
 		route( ":handler/:action?" ).end();

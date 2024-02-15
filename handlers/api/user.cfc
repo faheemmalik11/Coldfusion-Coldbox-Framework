@@ -4,6 +4,8 @@
  */
 component extends="coldbox.system.EventHandler"{
 
+	property name="funkyService" inject="FunkyService";
+
 	this.prehandler_only 	= "";
 	this.prehandler_except 	= "";
 	this.posthandler_only 	= "";
@@ -52,6 +54,16 @@ component extends="coldbox.system.EventHandler"{
 			message: "user removed successfully",
 			users: this.users
 		};
+	  }
+
+	  function funky(event, rc, prc){
+		/* users = funkyService.getFunkyData(); */
+
+        var person = populateModel( "FunkyService" );
+		writeDump(person);
+		abort;
+/* 		users= getInstance("FunkyService").getFunkyData();
+		event.renderData(data=users	, type="XML"); */
 	  }
 
 }

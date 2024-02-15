@@ -10,11 +10,37 @@ component extends="coldbox.system.EventHandler"{
 	this.posthandler_except = "";
 	this.aroundHandler_only = "";
 	this.aroundHandler_except = "";
-	this.allowedMethods = {};
+	this.allowedMethods = {
+/* 		delete: "POST",
+		POST: "POST" */
+
+	};
 	/**
 	 * Display a listing of the resource
 	 */
+
+	/* function preHandler(event, rc, prc, eventArguments) {
+		writeDump("HELLO!!!! This is preHandler method");
+	} */
+
+	/* function postHandler(event, rc, prc, eventArguments) {
+		writeDump("HELLO!!!! This is postHandler method");
+	}
+	function postIndex(event, rc, prc, eventArguments) {
+		writeDump("HELLO!!!! This is postIndex method");
+	} */
+
+	/* function aroundHandler(event, rc, prc, eventArguments) {
+		relocate("blog.delete");
+	} */
+
+	/* function preDelete(event, rc, prc, eventArguments) {
+		writeDump("HELLO!!!! This is preDelete method");
+	} */
+
 	function index( event, rc, prc ){
+		/* relocate("contacts.index"); */
+		/* writeDump("Hello! This is inside the index method"); */
 		/* relocate("contacts.data"); */
 		/* event.setPrivateValue( "name", "Luis" ); */
 		/* return "<h1>Hello from my handler today at :#now()#</h1>"; */
@@ -41,6 +67,21 @@ component extends="coldbox.system.EventHandler"{
 			)
 			.noRender();
 	}
+
+	function onMissingAction(event, rc, prc, eventArguments){
+		response = {code: 400, message: "Bad request, Action does not exist"};
+		event.renderData(data=response, type="JSON");
+	}
+
+	function onError( event, rc, prc, faultAction, exception, eventArguments ){
+		response = {code: 500, message: exception.message};
+		event.renderData(data=response, type="JSON");
+	}
+
+	/* function onInvalidHTTPMethod(){
+		writeDump("InvalidHttpMethod!!!!");
+		abort;
+	} */
 
 
 
